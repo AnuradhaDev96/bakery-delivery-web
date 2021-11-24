@@ -1,4 +1,5 @@
-import 'package:bakery_delivery_web/pages/default_landing_page.dart';
+import 'package:bakery_delivery_web/pages/Home/default_landing_page.dart';
+import 'package:bakery_delivery_web/pages/authentication/sign_in.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const DefaultLandingPage(),
+      home: const SignInPage(),
     );
   }
 }

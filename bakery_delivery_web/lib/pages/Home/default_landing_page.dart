@@ -1,4 +1,6 @@
+import 'package:bakery_delivery_web/helpers/responsive.dart';
 import 'package:bakery_delivery_web/helpers/style.dart';
+import 'package:bakery_delivery_web/pages/Home/widgets/large_screen.dart';
 import 'package:bakery_delivery_web/widgets/main_drawer.dart';
 import 'package:bakery_delivery_web/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +27,7 @@ class _DefaultLandingPageState extends State<DefaultLandingPage> {
       ),
       drawer: const MainDrawer(),
       backgroundColor: backgroundColor,
+      body: ResponsiveWidget(largeScreen: const LargeScreen()),
       
     );
   }
