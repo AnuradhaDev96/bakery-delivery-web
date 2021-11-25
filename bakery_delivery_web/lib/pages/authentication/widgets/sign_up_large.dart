@@ -1,4 +1,3 @@
-import 'package:bakery_delivery_web/constants/app_color.dart';
 import 'package:bakery_delivery_web/helpers/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:bakery_delivery_web/pages/authentication/widgets/custom_image.dart';
@@ -7,14 +6,14 @@ import 'package:bakery_delivery_web/pages/authentication/widgets/custom_text.dar
 import 'package:bakery_delivery_web/pages/authentication/widgets/custome_raised_button.dart';
 import 'package:bakery_delivery_web/pages/authentication/widgets/wsized_box.dart';
 
-class SignInLarge extends StatefulWidget {
-  const SignInLarge({Key? key}) : super(key: key);
+class SignUpLarge extends StatefulWidget {
+  const SignUpLarge({Key? key}) : super(key: key);
 
   @override
-  _SignInLargeState createState() => _SignInLargeState();
+  _SignUpLargeState createState() => _SignUpLargeState();
 }
 
-class _SignInLargeState extends State<SignInLarge> {
+class _SignUpLargeState extends State<SignUpLarge> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -82,7 +81,7 @@ class _SignInLargeState extends State<SignInLarge> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   CustomText(
-                                    text: 'Login to your account',
+                                    text: 'Create new account',
                                     textColor: Colors.white,
                                     textSize:
                                         ResponsiveWidget.isMediumScreen(context)
@@ -104,13 +103,13 @@ class _SignInLargeState extends State<SignInLarge> {
                               Row(
                                 children: const [
                                   CustomText(
-                                    text: 'Not A member ?',
+                                    text: 'Already A member ?',
                                     textColor: Colors.grey,
                                     textSize: 18,
                                     fontWeight: FontWeight.normal,
                                   ),
                                   CustomText(
-                                    text: ' Sign up',
+                                    text: ' Sign in',
                                     textColor: Colors.blue,
                                     textSize: 18,
                                     fontWeight: FontWeight.normal,
@@ -118,9 +117,21 @@ class _SignInLargeState extends State<SignInLarge> {
                                 ],
                               ),
                               const WSizedBox(width: 0, height: 0.03),
-                              CustomInputField(
+                              const CustomInputField(
                                   borderRadius: 20,
-                                  borderColor: AppColor.darkBlue,
+                                  borderColor: Color.fromARGB(255, 50, 54, 69),
+                                  width: 0.32,
+                                  height: 0.05,
+                                  icon: Icons.person,
+                                  iconColor: Colors.grey,
+                                  hintText: 'full name',
+                                  hintColor: Colors.grey,
+                                  fontSize: 15,
+                                  obsecureText: false),
+                              const WSizedBox(width: 0, height: 0.02),
+                              const CustomInputField(
+                                  borderRadius: 20,
+                                  borderColor: Color.fromARGB(255, 50, 54, 69),
                                   width: 0.32,
                                   height: 0.05,
                                   icon: Icons.mail,
@@ -130,9 +141,9 @@ class _SignInLargeState extends State<SignInLarge> {
                                   fontSize: 15,
                                   obsecureText: false),
                               const WSizedBox(width: 0, height: 0.02),
-                              CustomInputField(
+                              const CustomInputField(
                                   borderRadius: 20,
-                                  borderColor: AppColor.darkBlue,
+                                  borderColor: Color.fromARGB(255, 50, 54, 69),
                                   width: 0.32,
                                   height: 0.05,
                                   icon: Icons.lock,
@@ -142,17 +153,34 @@ class _SignInLargeState extends State<SignInLarge> {
                                   fontSize: 15,
                                   obsecureText: true),
                               const WSizedBox(width: 0, height: 0.04),
-                              CustomRaisedButton(
-                                buttonTitle: 'login to my account',
-                                width: 0.32,
-                                height: 0.05,
-                                borderColor:
-                                    const Color.fromARGB(255, 29, 144, 244),
-                                borderRadius: 25,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                fontColor: Colors.white,
-                                onPressedAction: () {},
+                              Row(
+                                children: [
+                                  CustomRaisedButton(
+                                    buttonTitle: 'change method',
+                                    width: 0.15,
+                                    height: 0.05,
+                                    borderColor:
+                                        const Color.fromARGB(255, 84, 91, 105),
+                                    borderRadius: 25,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    fontColor: Colors.white,
+                                    onPressedAction: () {},
+                                  ),
+                                  const WSizedBox(width: 0.02, height: 0),
+                                  CustomRaisedButton(
+                                    buttonTitle: 'login to my account',
+                                    width: 0.15,
+                                    height: 0.05,
+                                    borderColor:
+                                        const Color.fromARGB(255, 29, 144, 244),
+                                    borderRadius: 25,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    fontColor: Colors.white,
+                                    onPressedAction: () {},
+                                  ),
+                                ],
                               ),
                             ],
                           ),

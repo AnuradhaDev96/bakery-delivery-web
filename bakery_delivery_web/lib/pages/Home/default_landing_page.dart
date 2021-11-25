@@ -27,7 +27,7 @@ class _DefaultLandingPageState extends State<DefaultLandingPage> {
       ),
       drawer: const MainDrawer(),
       backgroundColor: backgroundColor,
-      body: ResponsiveWidget(largeScreen: const LargeScreen()),
+      body: ResponsiveWidget(largeScreen: const LandingLarge()),
       
     );
   }

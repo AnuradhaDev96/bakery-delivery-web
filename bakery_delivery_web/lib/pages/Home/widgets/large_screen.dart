@@ -6,14 +6,14 @@ import 'package:bakery_delivery_web/widgets/customer_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LargeScreen extends StatefulWidget {
-  const LargeScreen({Key? key}) : super(key: key);
+class LandingLarge extends StatefulWidget {
+  const LandingLarge({Key? key}) : super(key: key);
 
   @override
-  _LargeScreenState createState() => _LargeScreenState();
+  _LandingLargeState createState() => _LandingLargeState();
 }
 
-class _LargeScreenState extends State<LargeScreen> {
+class _LandingLargeState extends State<LandingLarge> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
