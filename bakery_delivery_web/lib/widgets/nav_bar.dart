@@ -1,8 +1,12 @@
+import 'package:bakery_delivery_web/constants/enums.dart';
 import 'package:bakery_delivery_web/helpers/style.dart';
+import 'package:bakery_delivery_web/pages/authentication/sign_in.dart';
 import 'package:bakery_delivery_web/pages/authentication/sign_up.dart';
 import 'package:bakery_delivery_web/pages/authentication/widgets/custome_raised_button.dart';
+import 'package:bakery_delivery_web/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key, required this.homeScaffoldKey}) : super(key: key);
@@ -91,13 +95,16 @@ class _NavBarState extends State<NavBar> {
                       });
                     },
                     hoverColor: Colors.transparent,
-                    onTap: () {},
+                    onTap: () {
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInPage()));
+                      Provider.of<UserProvider>(context, listen: false).changeAuthstatus(AuthStatus.unauthenticated);
+                    },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const SizedBox(height: 12.0),
                         Text(
-                          "Download",
+                          "Sign in",
                           style: GoogleFonts.roboto(
                               fontSize: 16.0,
                               fontWeight: FontWeight.bold,

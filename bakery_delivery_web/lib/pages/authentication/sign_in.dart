@@ -19,3 +19,9 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 }
+// AnimatedSwitcher(
+//       duration: const Duration(milliseconds: 5000),
+//       transitionBuilder: (Widget child, Animation<double> animation) {
+//          animation = CurvedAnimation(parent: animation, curve: Curves.easeIn);
+//         return ScaleTransition(child: child, scale: animation);
+//       },
