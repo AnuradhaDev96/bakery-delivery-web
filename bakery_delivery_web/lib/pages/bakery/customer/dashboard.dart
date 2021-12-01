@@ -3,6 +3,7 @@ import 'package:bakery_delivery_web/helpers/responsive.dart';
 import 'package:bakery_delivery_web/helpers/style.dart';
 import 'package:bakery_delivery_web/pages/bakery/customer/customer_side_menu.dart';
 import 'package:bakery_delivery_web/pages/bakery/customer/header_bar.dart';
+import 'package:bakery_delivery_web/pages/bakery/customer/widgets/delivery_vehicle_list.dart';
 import 'package:bakery_delivery_web/provider/customer_menu_provider.dart';
 import 'package:bakery_delivery_web/pages/bakery/customer/widgets/welcome_card.dart';
 // import 'package:charts_flutter/flutter.dart';
@@ -21,7 +22,7 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   // Widget currentScreen = const DashboardContent();
- 
+
   final PageStorageBucket screenBucket = PageStorageBucket();
 
   // final List<Widget> screens = [const DashboardContent()];
@@ -40,26 +41,42 @@ class _DashboardScreenState extends State<DashboardScreen> {
   //       break;
   //   }
   // }
-  
 
   @override
   Widget build(BuildContext context) {
     //  var currentScreen = context.watch<MenuController>().currentScreen;
     return Scaffold(
       key: context.read<CustomerMenuProvider>().customerHomeScaffoldState,
-      drawer:  CustomerSideMenu(dashContext: context,),
+      drawer: CustomerSideMenu(
+        dashContext: context,
+      ),
       body: SafeArea(
           child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (ResponsiveWidget.isLargeScreen(context))
-             Expanded(
-              child: CustomerSideMenu(dashContext: context,),
+            Expanded(
+              child: CustomerSideMenu(
+                dashContext: context,
+              ),
             ),
           Expanded(
             flex: 5,
             // child: DashboardContent(),
-            child: PageStorage(bucket: screenBucket, child: context.watch<CustomerMenuProvider>().currentScreen),
+            child: PageStorage(
+                bucket: screenBucket,
+                child: AnimatedSwitcher(
+                  transitionBuilder: (child, Animation<double>animation){
+                    return SlideTransition(
+                      position: Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero).animate(animation),
+                      child: child,
+                    );
+                  },
+                  // switchOutCurve: Curves.bounceOut,
+                  // switchInCurve: Curves.easeOut,
+                  duration: const Duration(milliseconds: 120),
+                    child:
+                        context.watch<CustomerMenuProvider>().currentScreen)),
           ),
         ],
       )),
@@ -68,10 +85,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 }
 
 class DashboardContent extends StatelessWidget {
-  const DashboardContent({Key? key}) : super(key: key);  
+  const DashboardContent({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(defaultPadding),
@@ -90,6 +107,8 @@ class DashboardContent extends StatelessWidget {
                     children: [
                       const WelcomeCard(),
                       const SizedBox(height: defaultPadding),
+                      // const DeliveryVehiclesList(),
+                      // const SizedBox(height: defaultPadding),
                       if (ResponsiveWidget.isSmallScreen(context))
                         const SizedBox(height: defaultPadding),
                       if (ResponsiveWidget.isSmallScreen(context))
@@ -100,7 +119,10 @@ class DashboardContent extends StatelessWidget {
                 if (!ResponsiveWidget.isSmallScreen(context))
                   const SizedBox(width: defaultPadding),
                 if (!ResponsiveWidget.isSmallScreen(context))
-                  Expanded(flex: 2, child: NotificationCard(cardColor: active))
+                  const Expanded(
+                    flex: 2,
+                    child: DeliveryVehiclesList(),
+                  )
               ],
             )
           ],
@@ -149,7 +171,6 @@ class NotificationCard extends StatelessWidget {
   }
 }
 
-
 class SubscriptionContent extends StatelessWidget {
   const SubscriptionContent({Key? key}) : super(key: key);
 
@@ -171,7 +192,9 @@ class SubscriptionContent extends StatelessWidget {
                   flex: 5,
                   child: Column(
                     children: [
-                      NotificationCard(cardColor: disable,),
+                      NotificationCard(
+                        cardColor: disable,
+                      ),
                       const SizedBox(height: defaultPadding),
                       if (ResponsiveWidget.isSmallScreen(context))
                         const SizedBox(height: defaultPadding),

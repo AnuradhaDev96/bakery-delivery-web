@@ -37,7 +37,7 @@ class _SignInLargeState extends State<SignInLarge> {
     // AuthCredentials authCredentials = AuthCredentials(
     //     email: userNameController.text, password: passwordController.text);
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
 
       await authService
           .signInUsingEmailAndPassword(authCredentials)
@@ -45,17 +45,6 @@ class _SignInLargeState extends State<SignInLarge> {
         setState(() {
           isLoggingChecking = false;
         });
-        prefs.setBool('isLoggedIn', true);
-        prefs.setString('uid', authenticatedUser.uid);
-        prefs.setString('token', authenticatedUser.token);
-        prefs.setString('email', authenticatedUser.email);
-        prefs.setString('fullName', authenticatedUser.fullName);
-        // prefs.setString('token', )
-        // final snackBar = SnackBar(
-        //   content: const Text("Successfull"),
-        //   backgroundColor: Colors.green[900],
-        // );
-        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
         Provider.of<UserProvider>(context, listen: false).setAuthenticatedApp(authenticatedUser, AuthStatus.authenticated);
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const CustomerDashboardPage()));
       });

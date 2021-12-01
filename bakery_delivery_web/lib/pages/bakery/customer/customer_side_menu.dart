@@ -1,15 +1,26 @@
+import 'package:bakery_delivery_web/api/services/auth.dart';
 import 'package:bakery_delivery_web/constants/enums.dart';
 import 'package:bakery_delivery_web/provider/customer_menu_provider.dart';
+import 'package:bakery_delivery_web/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class CustomerSideMenu extends StatelessWidget {
-  const CustomerSideMenu({Key? key, required this.dashContext, }) : super(key: key);
+  CustomerSideMenu({Key? key, required this.dashContext, }) : super(key: key);
   // changeTheScreen(){
     
   // }
   final BuildContext dashContext;
+  AuthService authService = AuthService();
+
+  void signOutUser() async{
+    try{
+      await authService.signOut();
+    } catch (error){
+      print("signout error");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +44,10 @@ class CustomerSideMenu extends StatelessWidget {
           }),
           const DrawerTile(title: "Previous Orders", icon: Icons.skip_previous),
           const DrawerTile(title: "Settings", icon: Icons.settings),
+          DrawerTile(title: "Sign out", icon: Icons.logout, onPressAction: (){
+            signOutUser();
+            Provider.of<UserProvider>(context, listen: false).setUnauthenticatedApp();
+          }),
         ],
       ),
     );
